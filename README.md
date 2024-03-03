@@ -26,6 +26,8 @@ Bot was written in **Python 3.8.10** using [aiogram](https://github.com/aiogram/
 
 All the files, but **words.txt**, in this bot are under the MIT License, so if you want, you can contribute in it.
 
+Before start, create ```/src/words.txt``` with some words, that will be filtered by the bot.
+
 ### How to create virtual environment
 ```bash
 cd src
