@@ -2,6 +2,25 @@
 ## About
 This bot was created special for the one chat, where bad words are strictly prohibited. Well, in the future this bot can be easily modified to something bigger.
 
+## Admin privileges
+There are admin privileges available in the bot. You can also modify answer texts in src/texts.json
+
+### How to add new admins?
+**File .env** you should add new telegram ID to ```ADMINS``` variable, separating by whitespace.
+
+You can get telegram ID from the [special telegram bot](https://t.me/getmyid_bot).
+
+Example:
+
+```python
+# Two admins with telegram ID's
+ADMIN = "123456 468267"
+```
+
+### Admin commands
+```/add_stop_word``` — add word to the stop list<br>
+```/check_stop_word``` — check if word is in the stop list
+
 ## Contributing
 Bot was written in **Python 3.8.10** using [aiogram](https://github.com/aiogram/aiogram)
 
