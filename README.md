@@ -22,8 +22,6 @@ python app.py
 
 ### How to start from Docker
 ```bash
-cd src
-
 docker compose build app
 docker compoes up
 ```
