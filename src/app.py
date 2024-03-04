@@ -64,6 +64,9 @@ async def messages_handler(message: aiogram.types.Message) -> None:
     # Checking if message was received from the chat
     # Group chat id's are less than 0
     if message.chat.id < 0 and message.chat.id == CHAT_ID:
+        if not message.text:
+            return
+
         await filter_message(
             user_chat_id=message.chat.id,
             message_id=message.message_id,
@@ -71,31 +74,39 @@ async def messages_handler(message: aiogram.types.Message) -> None:
         )
 
         return
-    
+
     # If message was once edited, we don't let it go next
     if message.edit_date:
         return
-    
+
     # If message wasn't from group then this is private chat
     # Checking if message was received from admin
     # Because only admins can chat with bot.
     if str(message.chat.id) in ADMINS:
         if message.text[:14] == "/add_stop_word":
             if message.text[15:] in stop_words:
-                await message.reply(texts["admin"]["replies"]["error_word_already_exists"])
+                await message.reply(
+                    texts["admin"]["replies"]["error_word_already_exists"]
+                )
             else:
                 await add_filter_word(word=message.text[15:])
-                await message.reply(texts["admin"]["replies"]["success_word_added"])
+                await message.reply(
+                    texts["admin"]["replies"]["success_word_added"]
+                )
 
         elif message.text[:16] == "/check_stop_word":
             if message.text[17:] in stop_words:
-                await message.reply(texts["admin"]["replies"]["success_word_exists"])
+                await message.reply(
+                    texts["admin"]["replies"]["success_word_exists"]
+                )
             else:
-                await message.reply(texts["admin"]["replies"]["error_word_doesnt_exists"])
+                await message.reply(
+                    texts["admin"]["replies"]["error_word_doesnt_exists"]
+                )
 
         await message.reply(texts["admin"]["replies"]["admin_menu"])
         return
-    
+
     await message.reply(texts["admin"]["replies"]["error_admin_only"])
 
 
