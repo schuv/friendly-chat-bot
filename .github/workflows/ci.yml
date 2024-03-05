@@ -18,7 +18,7 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd /home/mark/chat_bot
+            cd /home/github-actions/chat_bot
             git pull origin master
             cat << WRITEDATA >> .env
             BOT_TOKEN = "${{ secrets.ENV_BOT_TOKEN }}"
