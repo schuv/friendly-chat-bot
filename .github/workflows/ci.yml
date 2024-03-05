@@ -18,11 +18,11 @@ jobs:
           username: ${{ secrets.SERVER_USER }}
           password: ${{ secrets.SERVER_PASSWORD }}
           script: |
-            cd chat_bot
+            cd home/mark/chat_bot
             git pull origin master
             cat << WRITEDATA >> .env
             BOT_TOKEN = "${{ secrets.ENV_BOT_TOKEN }}"
             CHAT_ID = "${{ secrets.ENV_CHAT_ID }}"
             ADMINS = "${{ secrets.ENV_ADMINS }}"
             WRITEDATA
-            docker-compose up --build
+            docker-compose up -d --build
