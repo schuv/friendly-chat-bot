@@ -28,7 +28,11 @@ logger.info("Initializing")
 
 async def filter_message(
     *, user_chat_id: int, message_id: int, message_text: str
-) -> bool:
+) -> bool:    
+    if "*" in message_text:
+        await bot.delete_message(user_chat_id, message_id)
+        return True
+
     message_text_words = message_text.split()
 
     for word in message_text_words:

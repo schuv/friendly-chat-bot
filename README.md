@@ -2,6 +2,10 @@
 ## About
 This bot was created special for the one chat, where bad words are strictly prohibited. Well, in the future this bot can be easily modified to something bigger.
 
+Bot deletes all the messages, where he could find "*" symbol or a word from the "words.txt" file.
+
+Works only in one chat. You can set that in the **.env** file.
+
 ## Admin privileges
 There are admin privileges available in the bot. You can also modify answer texts in src/texts.json
 
