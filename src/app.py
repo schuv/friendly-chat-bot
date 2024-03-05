@@ -63,8 +63,8 @@ async def add_filter_word(*, word: str) -> None:
 async def messages_handler(message: aiogram.types.Message) -> None:
     # Checking if message was received from the chat
     # Group chat id's are less than 0
-    if message.chat.id < 0 and message.chat.id == CHAT_ID:
-        if not message.text:
+    if message.chat.id < 0 and message.chat.type != "private":
+        if message.chat.id != CHAT_ID or not message.text:
             return
 
         await filter_message(
