@@ -20,6 +20,7 @@ jobs:
           script: |
             cd /home/github-actions/chat_bot
             git pull origin master
+            rm -rf .env
             cat << WRITEDATA >> .env
             BOT_TOKEN = "${{ secrets.ENV_BOT_TOKEN }}"
             CHAT_ID = "${{ secrets.ENV_CHAT_ID }}"
