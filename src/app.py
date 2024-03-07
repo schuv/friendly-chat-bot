@@ -63,6 +63,7 @@ async def add_filter_word(*, word: str) -> None:
 async def messages_handler(message: aiogram.types.Message) -> None:
     # Checking if message was received from the chat
     # Group chat id's are less than 0
+    logger.info(message)
     if message.chat.id < 0 and message.chat.id == CHAT_ID:
         if not message.text:
             return
@@ -83,26 +84,27 @@ async def messages_handler(message: aiogram.types.Message) -> None:
     # Checking if message was received from admin
     # Because only admins can chat with bot.
     if str(message.chat.id) in ADMINS:
-        if message.text[:14] == "/add_stop_word":
-            if message.text[15:] in stop_words:
-                await message.reply(
-                    texts["admin"]["replies"]["error_word_already_exists"]
-                )
-            else:
-                await add_filter_word(word=message.text[15:])
-                await message.reply(
-                    texts["admin"]["replies"]["success_word_added"]
-                )
+        if message.text:
+            if message.text[:14] == "/add_stop_word":
+                if message.text[15:] in stop_words:
+                    await message.reply(
+                        texts["admin"]["replies"]["error_word_already_exists"]
+                    )
+                else:
+                    await add_filter_word(word=message.text[15:])
+                    await message.reply(
+                        texts["admin"]["replies"]["success_word_added"]
+                    )
 
-        elif message.text[:16] == "/check_stop_word":
-            if message.text[17:] in stop_words:
-                await message.reply(
-                    texts["admin"]["replies"]["success_word_exists"]
-                )
-            else:
-                await message.reply(
-                    texts["admin"]["replies"]["error_word_doesnt_exists"]
-                )
+            elif message.text[:16] == "/check_stop_word":
+                if message.text[17:] in stop_words:
+                    await message.reply(
+                        texts["admin"]["replies"]["success_word_exists"]
+                    )
+                else:
+                    await message.reply(
+                        texts["admin"]["replies"]["error_word_doesnt_exists"]
+                    )
 
         await message.reply(texts["admin"]["replies"]["admin_menu"])
         return
