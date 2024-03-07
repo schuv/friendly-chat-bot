@@ -28,7 +28,11 @@ logger.info("Initializing")
 
 async def filter_message(
     *, user_chat_id: int, message_id: int, message_text: str
-) -> bool:
+) -> bool:    
+    if "*" in message_text:
+        await bot.delete_message(user_chat_id, message_id)
+        return True
+
     message_text_words = message_text.split()
 
     for word in message_text_words:
@@ -63,9 +67,8 @@ async def add_filter_word(*, word: str) -> None:
 async def messages_handler(message: aiogram.types.Message) -> None:
     # Checking if message was received from the chat
     # Group chat id's are less than 0
-    logger.info(message)
-    if message.chat.id < 0 and message.chat.id == CHAT_ID:
-        if not message.text:
+    if message.chat.id < 0 and message.chat.type != "private":
+        if message.chat.id != CHAT_ID or not message.text:
             return
 
         await filter_message(
