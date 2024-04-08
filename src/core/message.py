@@ -31,7 +31,7 @@ class CustomMessage:
 
         STOP_WORDS.append(self.message.text)
 
-        with open("words.txt", "a", encoding="UTF-8") as file:
+        with open(Config.words_file, "a", encoding="UTF-8") as file:
             file.write(f"\n{self.message.text}")
 
     async def is_filtered(self) -> bool:
