@@ -1,4 +1,5 @@
-# Friendly chat bot
+# Friendly chat bot for the school chat
+
 ## About
 This bot was created special for the one chat, where bad words are strictly prohibited. Well, in the future this bot can be easily modified to something bigger.
 
@@ -18,19 +19,15 @@ Example:
 
 ```python
 # Two admins with telegram ID's
-ADMIN = "123456 468267"
+ADMINS = "123456 468267"
 ```
-
-### Admin commands
-```/add_stop_word``` — add word to the stop list<br>
-```/check_stop_word``` — check if word is in the stop list
 
 ## Contributing
 Bot was written in **Python 3.8.10** using [aiogram](https://github.com/aiogram/aiogram)
 
 All the files, but **words.txt**, in this bot are under the MIT License, so if you want, you can contribute in it.
 
-Before start, create ```/src/words.txt``` with some words, that will be filtered by the bot.
+Before start, create ```/src/config/words.txt``` with some words, that will be filtered by the bot.
 
 ### How to create virtual environment
 ```bash

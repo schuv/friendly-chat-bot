@@ -1,5 +1,5 @@
 .env
-
-/src/log/
-/src/words.txt
-/src/venv/
+venv
+log
+words.txt
+**/__pycache__/

@@ -4,4 +4,3 @@ loguru==0.7.2
 
 # dev
 flake8==5.0.4
-black==24.2.0
