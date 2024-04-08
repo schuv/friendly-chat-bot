@@ -28,10 +28,10 @@ class Config:
     """
 
     token: str = os.getenv("BOT_TOKEN")
-    texts: dict = json.load(open("./config/texts.json", "r", encoding="UTF-8"))
+    texts: dict = json.load(open("/config/texts.json", "r", encoding="UTF-8"))
     admins: list = os.getenv("ADMINS").split()
     chat_id: int = int(os.getenv("CHAT_ID"))
-    words_file: str = "./config/words.txt"
+    words_file: str = "/config/words.txt"
 
     def read_words(self) -> list:
         """

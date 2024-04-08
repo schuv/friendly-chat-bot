@@ -3,6 +3,7 @@ import asyncio
 from loguru import logger
 from aiogram.types import Message
 from aiogram.fsm.state import default_state
+from aiogram.exceptions import TelegramBadRequest
 from aiogram import (
     Bot,
     Dispatcher
@@ -19,10 +20,19 @@ dp = Dispatcher()
 
 @dp.startup()
 async def on_startup(bot: Bot):
+    """
+    Function that triggers on bot startup
+
+    :param bot: Current bot instance
+    """
+
     logger.info("Bot started")
-    
+
     for admin in Config.admins:
-        await bot.send_message(admin, "🟢 Бот начал работу")
+        try:
+            await bot.send_message(admin, "🟢 Бот начал работу")
+        except TelegramBadRequest as e:
+            logger.exception(e)
 
 
 @dp.edited_message(default_state)
