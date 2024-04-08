@@ -10,7 +10,7 @@ from dotenv import (
 
 logger.add(
     sink="./log/app.log",
-    level="DEBUG",
+    level="INFO",
     format="[{time}][{level}]: {message} (line: {line})",
     rotation="1 MB",
     compression="zip",

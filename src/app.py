@@ -17,6 +17,14 @@ from core.message import CustomMessage
 dp = Dispatcher()
 
 
+@dp.startup()
+async def on_startup(bot: Bot):
+    logger.info("Bot started")
+    
+    for admin in Config.admins:
+        await bot.send_message(admin, "🟢 Бот начал работу")
+
+
 @dp.edited_message(default_state)
 @dp.message(default_state)
 async def message_handler(message: Message) -> None:
