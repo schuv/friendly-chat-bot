@@ -19,7 +19,7 @@ dp = Dispatcher()
 
 
 @dp.startup()
-async def on_startup(bot: Bot):
+async def on_startup(bot: Bot) -> None:
     """
     Function that triggers on bot startup
 
