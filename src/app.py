@@ -19,20 +19,12 @@ dp = Dispatcher()
 
 
 @dp.startup()
-async def on_startup(bot: Bot):
+async def on_startup():
     """
     Function that triggers on bot startup
-
-    :param bot: Current bot instance
     """
 
     logger.info("Bot started")
-
-    for admin in Config.admins:
-        try:
-            await bot.send_message(admin, "🟢 Бот начал работу")
-        except TelegramBadRequest as e:
-            logger.exception(e)
 
 
 @dp.edited_message(default_state)
